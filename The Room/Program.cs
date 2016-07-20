@@ -11,11 +11,16 @@ namespace The_Room
     {
         static void Main(string[] args)
         {
-            const int fudgeFactor = 3;
+            const int fudgeFactor = 1;
             string nameFirst = "";
             string nameLast = "";
             string nameCheck = "";
             string race = "";
+            string adventuringClass = "";
+            int health = 0;
+            int level = 0;
+            int resistance = 0;
+            int damageMod = 0;
 
             Random rnd = new Random();
             int strength = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
@@ -61,36 +66,42 @@ namespace The_Room
                     constitution = constitution + 2;
                     strength = strength + 1;
                     dexterity = dexterity - 1;
+                    race = "Dwarf";
                     WriteLine("You are now a dwarf! Diggy Diggy Hole!");
                     break;
                 case "h":
                     charisma = charisma + 2;
                     strength = strength + 1;
                     wisdom = wisdom - 1;
+                    race = "Human";
                     WriteLine("You are now a human! Yay!");
                     break;
                 case "e":
                     intelligence = intelligence + 2;
                     dexterity = dexterity + 1;
                     constitution = constitution - 1;
+                    race = "Elf";
                     WriteLine("You are now an elf! A very popular choice...");
                     break;
                 case "g":
                     dexterity = dexterity + 2;
                     charisma = charisma + 1;
                     strength = strength - 1;
+                    race = "Gnome";
                     WriteLine("You are now a gnome! How cute!");
                     break;
                 case "i":
                     wisdom = wisdom + 2;
                     intelligence = intelligence + 1;
                     charisma = charisma - 1;
+                    race = "Infernal";
                     WriteLine("You are now an infernal! Is it me or is it getting hot in here?");
                     break;
                 case "l":
                     strength = strength + 2;
                     constitution = constitution + 1;
                     charisma = charisma - 1;
+                    race = "Lizardfolk";
                     WriteLine("You are now a lizardfolk. Hisssssssss...");
                     break;
                 default:
@@ -104,6 +115,62 @@ namespace The_Room
             WriteLine("Your new intelligence is: " + intelligence);
             WriteLine("Your new wisdom is: " + wisdom);
             WriteLine("Your new charisma is: " + charisma);
+
+        AdventuringClass:
+            WriteLine("Great! Your name is: {0} {1}. You race is: {2}. Now what class of adventurer are you?", nameFirst, nameLast, race);
+            WriteLine("Again, write the first letter of the class you want!");
+            WriteLine("Warrior");
+            WriteLine("Ranger");
+            WriteLine("Mage");
+            WriteLine("Theif");
+            adventuringClass = ReadLine().ToLower();
+            switch (adventuringClass)
+            {
+                case "w":
+                    constitution = constitution + 1;
+                    strength = strength + 1;
+                    adventuringClass = "Warrior";
+                    WriteLine("You are a warrior! Enemies shall fear your mighty sword!");
+                    resistance = constitution + level;
+                    damageMod = (strength - 10) * level;
+                    break;
+                case "r":
+                    wisdom = wisdom + 1;
+                    dexterity = dexterity + 1;
+                    adventuringClass = "Ranger";
+                    WriteLine("You are now a ranger! Enemies shall fear your piercing arrows!");
+                    resistance = dexterity + level;
+                    damageMod = (strength - 10) * level;
+                    break;
+                case "m":
+                    intelligence = intelligence + 1;
+                    wisdom = wisdom + 1;
+                    adventuringClass = "Mage";
+                    WriteLine("You are now a mage! Enemies shall fear your arcanic powers!");
+                    resistance = constitution + level;
+                    damageMod = (intelligence - 10) * level;
+                    break;
+                case "t":
+                    dexterity = dexterity + 1;
+                    charisma = charisma + 1;
+                    adventuringClass = "Theif";
+                    WriteLine("You are now a theif! Enemies shall fear your deadly daggers!");
+                    resistance = dexterity + level;
+                    damageMod = (charisma - 10) * level;
+                    break;
+                default:
+                    WriteLine("Ye dun goofed!");
+                    goto AdventuringClass;
+            }
+            WriteLine("Great! Your name is: {0} {1}. You race is: {2}. Your adventuring class is: {3}", nameFirst, nameLast, race, adventuringClass);
+            level = 1;
+            WriteLine("You are now level 1!");
+            health = level * constitution;
+            WriteLine("Your health is {0}.", health);
+            WriteLine("Your resistance is {0}.", resistance);
+            WriteLine("Your damage modifier is {0}", damageMod);
+            WriteLine("Your base damage is {0}-{1}", level, level * 6);
+            WriteLine("Let us begin!");
 
             WriteLine("Press Enter To Exit Program.");
             Read();
