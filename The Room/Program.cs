@@ -11,18 +11,20 @@ namespace The_Room
     {
         static void Main(string[] args)
         {
+            const int fudgeFactor = 3;
             string nameFirst = "";
             string nameLast = "";
             string nameCheck = "y";
             string race = "h";
 
             Random rnd = new Random();
-            int strength = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + 3;
-            int dexterity = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) +3;
-            int constitution = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) +3;
-            int intelligence = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) +3;
-            int wisdom = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) +3;
-            int charisma = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) +3;
+            int strength = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
+            int dexterity = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
+            int constitution = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
+            int intelligence = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
+            int wisdom = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
+            int charisma = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
+        
 
             WriteLine("Your strength is: " + strength);
             WriteLine("Your dexterity is: " + dexterity);
@@ -81,7 +83,7 @@ namespace The_Room
                 constitution = constitution + 1;
                 charisma = charisma - 1;
                 WriteLine("You are now a lizardfolk. Hisssssssss...");
-            }else{
+            } else {
                 WriteLine("Ye dun goofed!");
                 goto Race;
             }
