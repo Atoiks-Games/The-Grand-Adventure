@@ -39,7 +39,7 @@ namespace The_Room
                 WriteLine("What is your last name adventurer? ");
                 nameLast = ReadLine();
                 WriteLine("Your name is: " + nameFirst + " " + nameLast + ". Is this correct? (y/n)");
-                nameCheck = ReadLine();
+                nameCheck = ReadLine().ToLower();
                 if (!(nameCheck == "n" || nameCheck == "y"))
                 {
                     WriteLine("INVALID! TRY AGAIN!");
@@ -47,14 +47,14 @@ namespace The_Room
             };
 
         Race:
-            WriteLine("What race do you wish to be? Write the first letter lowercase!");
+            WriteLine("What race do you wish to be? Write the first letter!");
             WriteLine("Dwarf: +2 Con, +1 Str, -1 Dex");
             WriteLine("Human: +2 Cha, +1 Str, -1 Wis");
             WriteLine("Elf: +2 Int, +1 Dex, -1 Con");
             WriteLine("Gnome: +2 Dex, +1 Cha, -1 Str");
             WriteLine("Infernal: +2 Wis, +1 Int, -1 Cha");
             WriteLine("Lizardfolk: +2 Str, +1 Con, -1 Cha");
-            race = ReadLine();
+            race = ReadLine().ToLower();
             switch (race)
             {
                 case "d":
