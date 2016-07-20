@@ -1,0 +1,6 @@
+C:\Users\ajbim\Desktop\C# Projects\The Room\The Room\bin\Debug\The Room.exe.config
+C:\Users\ajbim\Desktop\C# Projects\The Room\The Room\bin\Debug\The Room.exe
+C:\Users\ajbim\Desktop\C# Projects\The Room\The Room\bin\Debug\The Room.pdb
+C:\Users\ajbim\Desktop\C# Projects\The Room\The Room\obj\Debug\The Room.csprojResolveAssemblyReference.cache
+C:\Users\ajbim\Desktop\C# Projects\The Room\The Room\obj\Debug\The Room.exe
+C:\Users\ajbim\Desktop\C# Projects\The Room\The Room\obj\Debug\The Room.pdb
