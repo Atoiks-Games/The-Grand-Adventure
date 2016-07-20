@@ -40,7 +40,7 @@ namespace The_Room
                 nameLast = ReadLine();
                 WriteLine("Your name is: " + nameFirst + " " + nameLast + ". Is this correct? (y/n)");
                 nameCheck = ReadLine();
-                if (!(nameCheck.Equals("n") || nameCheck.Equals("y")))
+                if (!(nameCheck == "n" || nameCheck == "y"))
                 {
                     WriteLine("INVALID! TRY AGAIN!");
                 };
