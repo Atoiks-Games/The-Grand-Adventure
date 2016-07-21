@@ -15,6 +15,7 @@ namespace The_Room
             string nameFirst = "";
             string nameLast = "";
             string nameCheck = "";
+            string choice1 = "";
             string race = "";
             string adventuringClass = "";
             int health = 0;
@@ -30,7 +31,7 @@ namespace The_Room
             int wisdom = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
             int charisma = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
 
-
+            WriteLine("Welcome To:\n\n _The Grand Adventure_ \n\n Let's begin by determining your character's ability rankings and figuring out your name!");
             WriteLine("Your strength is: " + strength);
             WriteLine("Your dexterity is: " + dexterity);
             WriteLine("Your constitution is: " + constitution);
@@ -172,7 +173,23 @@ namespace The_Room
             WriteLine("Your base damage is {0}-{1}", level, level * 6);
             WriteLine("Let us begin!");
 
-            WriteLine("Press Enter To Exit Program.");
+            WriteLine("\n\n _CHAPTER 1: The Missing Merchant_ \n\n");
+            WriteLine("You wake up. It's morning. You can hear the birds chirping and the nearby river flowing. You get out of bed and look around the tiny cabin you live in.");
+            WriteLine("As you begin to get dressed you remeber that your adventuring contractor said he would be sending you a new task today. It would be in a parcel at the end of the long and twisted road to your house.");
+
+            while (!(choice1 == "h")){
+                WriteLine("You decide to:\nInspect Your House(i)\nHead Outside(h)");
+                choice1 = ReadLine().ToLower();
+                if (choice1.Equals("i")) {
+                    WriteLine("Your house is a small cabin in the woods. You live alone and gather food from the forest everyday. The house is well built and you are glad to call it home.");
+                } else if (!(choice1 == "h")){
+                    WriteLine("INVALID ACTION");
+                }
+            }
+
+            //Put what happens after you click h here!
+
+            WriteLine("That's All For Now! Press Enter To Exit Program.");
             Read();
 
         }
