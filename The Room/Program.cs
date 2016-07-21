@@ -19,7 +19,7 @@ namespace The_Room
             string race = "";
             string adventuringClass = "";
             int health = 0;
-            int level = 0;
+            int level = 1;
             int resistance = 0;
             int damageMod = 0;
 
@@ -164,7 +164,6 @@ namespace The_Room
                     goto AdventuringClass;
             }
             WriteLine("Great! Your name is: {0} {1}. You race is: {2}. Your adventuring class is: {3}", nameFirst, nameLast, race, adventuringClass);
-            level = 1;
             WriteLine("You are now level 1!");
             health = level * constitution;
             WriteLine("Your health is {0}.", health);
