@@ -9,14 +9,38 @@ namespace The_Room
 {
     class Race
     {
-        public static string raceName;
+        private static string raceName;
+        public static string RaceName
+        {
+            get
+            {
+                return raceName;
+            }
+            set
+            {
+                raceName = value.ToUpper();
+            }
+        } 
 
     }
+
     class Class
     {
-        public static string className;
+        private static string className;
+        public static string ClassName
+        {
+            get
+            {
+                return className;
+            }
+            set
+            {
+                className = value.ToUpper();
+            }
+        }
 
     }
+
     class Scores
     {
         public static int str;
@@ -47,8 +71,6 @@ namespace The_Room
             string nameLast = "";
             string nameCheck = "";
             string choice1 = "";
-            string race = "";
-            string adventuringClass = "";
             int health = 0;
             int level = 1;
             int resistance = 0;
@@ -86,49 +108,48 @@ namespace The_Room
             WriteLine("Gnome: +2 Dex, +1 Cha, -1 Str");
             WriteLine("Infernal: +2 Wis, +1 Int, -1 Cha");
             WriteLine("Lizardfolk: +2 Str, +1 Con, -1 Cha");
-            race = ReadLine().ToLower();
-            switch (race)
+            switch (ReadLine().ToLower())
             {
                 case "d":
                     Scores.con = Scores.con + 2;
                     Scores.str = Scores.str + 1;
                     Scores.dex = Scores.dex - 1;
-                    Race.raceName = "Dwarf";
+                    Race.RaceName = "Dwarf";
                     WriteLine("You are now a dwarf! Diggy Diggy Hole!");
                     break;
                 case "h":
                     Scores.cha = Scores.cha + 2;
                     Scores.str = Scores.str + 1;
                     Scores.wis = Scores.wis - 1;
-                    Race.raceName = "Human";
+                    Race.RaceName = "Human";
                     WriteLine("You are now a human! Yay!");
                     break;
                 case "e":
                     Scores.intel = Scores.intel + 2;
                     Scores.dex = Scores.dex + 1;
                     Scores.con = Scores.con - 1;
-                    Race.raceName = "Elf";
+                    Race.RaceName = "Elf";
                     WriteLine("You are now an elf! A very popular choice...");
                     break;
                 case "g":
                     Scores.dex = Scores.dex + 2;
                     Scores.cha = Scores.cha + 1;
                     Scores.str = Scores.str - 1;
-                    Race.raceName = "Gnome";
+                    Race.RaceName = "Gnome";
                     WriteLine("You are now a gnome! How cute!");
                     break;
                 case "i":
                     Scores.wis = Scores.wis + 2;
                     Scores.intel = Scores.intel + 1;
                     Scores.cha = Scores.cha - 1;
-                    Race.raceName = "Infernal";
+                    Race.RaceName = "Infernal";
                     WriteLine("You are now an infernal! Is it me or is it getting hot in here?");
                     break;
                 case "l":
                     Scores.str = Scores.str + 2;
                     Scores.con = Scores.con + 1;
                     Scores.cha = Scores.cha - 1;
-                    Race.raceName = "Lizardfolk";
+                    Race.RaceName = "Lizardfolk";
                     WriteLine("You are now a lizardfolk. Hisssssssss...");
                     break;
                 default:
@@ -139,19 +160,18 @@ namespace The_Room
             Scores.DisplayScores();
 
             AdventuringClass:
-            WriteLine("Great! Your name is: {0} {1}. You race is: {2}. Now what class of adventurer are you?", nameFirst, nameLast, Race.raceName);
+            WriteLine("Great! Your name is: {0} {1}. You race is: {2}. Now what class of adventurer are you?", nameFirst, nameLast, Race.RaceName);
             WriteLine("Again, write the first letter of the class you want!");
             WriteLine("Warrior");
             WriteLine("Ranger");
             WriteLine("Mage");
             WriteLine("Theif");
-            adventuringClass = ReadLine().ToLower();
-            switch (adventuringClass)
+            switch (ReadLine().ToLower())
             {
                 case "w":
                     Scores.con = Scores.con + 1;
                     Scores.str = Scores.str + 1;
-                    Class.className = "Warrior";
+                    Class.ClassName = "Warrior";
                     WriteLine("You are a warrior! Enemies shall fear your mighty sword!");
                     resistance = Scores.con + level;
                     damageMod = (Scores.con - 10) * level;
@@ -159,7 +179,7 @@ namespace The_Room
                 case "r":
                     Scores.wis = Scores.wis + 1;
                     Scores.dex = Scores.dex + 1;
-                    Class.className = "Ranger";
+                    Class.ClassName = "Ranger";
                     WriteLine("You are now a ranger! Enemies shall fear your piercing arrows!");
                     resistance = Scores.dex + level;
                     damageMod = (Scores.str - 10) * level;
@@ -167,7 +187,7 @@ namespace The_Room
                 case "m":
                     Scores.intel = Scores.intel + 1;
                     Scores.wis = Scores.wis + 1;
-                    Class.className = "Mage";
+                    Class.ClassName = "Mage";
                     WriteLine("You are now a mage! Enemies shall fear your arcanic powers!");
                     resistance = Scores.con + level;
                     damageMod = (Scores.intel - 10) * level;
@@ -175,7 +195,7 @@ namespace The_Room
                 case "t":
                     Scores.dex = Scores.dex + 1;
                     Scores.cha = Scores.cha + 1;
-                    Class.className = "Theif";
+                    Class.ClassName = "Theif";
                     WriteLine("You are now a theif! Enemies shall fear your deadly daggers!");
                     resistance = Scores.dex + level;
                     damageMod = (Scores.cha - 10) * level;
@@ -184,7 +204,7 @@ namespace The_Room
                     WriteLine("Ye dun goofed!");
                     goto AdventuringClass;
             }
-            WriteLine("Great! Your name is: {0} {1}. You race is: {2}. Your adventuring class is: {3}", nameFirst, nameLast, Race.raceName, Class.className);
+            WriteLine("Great! Your name is: {0} {1}. You race is: {2}. Your adventuring class is: {3}", nameFirst, nameLast, Race.RaceName, Class.ClassName);
             WriteLine("You are now level 1!");
             health = level * Scores.con;
             WriteLine("Your health is {0}.", health);
