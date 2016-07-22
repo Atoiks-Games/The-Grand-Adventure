@@ -49,7 +49,6 @@ namespace The_Room
         public static int intel;
         public static int wis;
         public static int cha;
-        public static int playerNumber;
 
         public static void DisplayScores()
         {
