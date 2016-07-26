@@ -14,43 +14,43 @@ namespace TheGrandAdventure
             WriteLine("Welcome To:\n\n _The Grand Adventure_ \n\n Let's begin by determining your character's ability rankings and figuring out your name!");
             Player Player1 = new TheGrandAdventure.Player(1); //No need to be static!
             Player1.GenerateScores(1); //1 is fudgeFactor...
-            int c = 0;
-            while (c.Equals(0))
+            bool c = true;
+            while (c)                       // Sometimes, == just works. You should be .Equals when comparing Objects
             {
-                int a = 0;
-                while (a.Equals(0))
+                bool a = true;              // For Flag / Toggle values, use boolean
+                while (a)
                 {
                     WriteLine("What is your first name?");
-                    string input1 = ReadLine();
-                    if (input1.Trim().Equals(""))
+                    string input1 = ReadLine().Trim();  // Trim early so its called once.
+                    if (input1 == "")
                     {
                         WriteLine("Nice try. Actually write some characters this time please.");
                     }
                     else
                     {
-                        Player1.fName = input1.Trim();
-                        a = 1;
+                        Player1.fName = input1;
+                        a = false;
                     }
                 }
-                int b = 0;
-                while (b.Equals(0))
+                bool b = true;              // Couldn't you just use `a`` here? (Or no variables, just break?)
+                while (b)
                 {
                     WriteLine("What is your last name?");
-                    string input2 = ReadLine();
-                    if (input2.Trim().Equals(""))
+                    string input2 = ReadLine().Trim();
+                    if (input2.Trim() == "")
                     {
                         WriteLine("Nice try. Actually write some characters this time please.");
                     }
                     else
                     {
-                        Player1.lName = input2.Trim();
-                        b = 1;
+                        Player1.lName = input2;
+                        b = false;
                     }
                 }
                 WriteLine("Your name is {0} {1}. Is that correct? (Type y for yes. Type anything else for no.)", Player1.fName, Player1.lName);
-                if (ReadLine().ToLower().Trim().Equals("y"))
+                if (ReadLine().ToLower().Trim() == "y")
                 {
-                    c = 1;
+                    c = false;
                 }
             }
             WriteLine("What race do you wish to be? Write the first letter!");

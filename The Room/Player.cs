@@ -7,7 +7,7 @@ using static System.Console;
 
 namespace TheGrandAdventure
 {
-    class Player //Yay. Figured out how to use multiple files!
+    class Player
     {
         private int STR = 0;
         public int strength
@@ -108,7 +108,7 @@ namespace TheGrandAdventure
             }
         }
 
-        public enum CharacterRace //Yay enums!
+        public enum CharacterRace
         {
             DWARF = 0, HUMAN, ELF, GNOME, INFERNAL, LIZARDFOLK
         }
@@ -116,11 +116,11 @@ namespace TheGrandAdventure
         {
             KNIGHT = 0, RANGER, MAGE, THIEF, CLERIC, BARBARIAN
         }
-        public enum CharacterWeapon //Added weapons, will affect attack damage later on in game...
+        public enum CharacterWeapon // TODO: Added weapons, will affect attack damage later on in game...
         {
             SWORD = 0, LONGSWORD, GREATSWORD, BOW, LONGBOW, CROSSBOW, STAFF, LONGSTAFF, BOSTAFF, DAGGER, THROWINGKNIFE, KUNAI, CROSS, IDOL, TOME, AXE, BATTLEAXE, WARHAMMER
         }
-        CharacterClass playerClass;
+        private CharacterClass playerClass; // Using private modifier here
         public CharacterClass playClass
         {
             get
@@ -132,7 +132,7 @@ namespace TheGrandAdventure
                 playerClass = value;
             }
         }
-        CharacterRace playerRace;
+        private CharacterRace playerRace;
         public CharacterRace playRace
         {
             get
@@ -144,7 +144,7 @@ namespace TheGrandAdventure
                 playerRace = value;
             }
         }
-        CharacterWeapon playerWeapon;
+        private CharacterWeapon playerWeapon;
         public CharacterWeapon playWeapon
         {
             get
@@ -190,14 +190,7 @@ namespace TheGrandAdventure
             }
             set
             {
-                if (health + value < maxHealth) // ensures player doesn't go over max health
-                {
-                    health = health + value;
-                }
-                else
-                {
-                    health = maxHealth;
-                }
+                health = Math.Min(health + value, maxHealth); // ensures player doesn't go over max health
             }
         }
         private int maxHealth = 0;
@@ -209,8 +202,8 @@ namespace TheGrandAdventure
             }
             set
             {
-                maxHealth = value;
-            }
+                maxHealth = value;          // Consider taking account of when the new maxHp is smaller than
+            }                               // the player's current hp.
         }
         private int damageModifier = 0;
         public int dmgMod
@@ -251,8 +244,7 @@ namespace TheGrandAdventure
         }
         public void DetermineRace()
         {
-            int a = 0;
-            while (a == 0) // no need for gotos!
+            while (true)
             {
                 string race = ReadLine().ToLower().Trim();
                 switch (race)
@@ -263,58 +255,52 @@ namespace TheGrandAdventure
                         dexterity = -1;
                         playerRace = CharacterRace.DWARF;
                         WriteLine("You are now a dwarf! Diggy Diggy Hole!");
-                        a = 1;
-                        break;
+                        goto end;       // I am afraid the gotos are back
                     case "h":
                         charisma = 2;
                         strength = 1;
                         wisdom = -1;
                         playerRace = CharacterRace.HUMAN;
                         WriteLine("You are now a human! Yay!");
-                        a = 1;
-                        break;
+                        goto end;
                     case "e":
                         intelligence = 2;
                         dexterity = 1;
                         constitution = -1;
                         playerRace = CharacterRace.ELF;
                         WriteLine("You are now an elf! A very popular choice...");
-                        a = 1;
-                        break;
+                        goto end;
                     case "g":
                         dexterity = 2;
                         charisma = 1;
                         strength = -1;
                         playerRace = CharacterRace.GNOME;
                         WriteLine("You are now a gnome! How cute!");
-                        a = 1;
-                        break;
+                        goto end;
                     case "i":
                         wisdom = 2;
                         intelligence = 1;
                         charisma = -1;
                         playerRace = CharacterRace.INFERNAL;
                         WriteLine("You are now an infernal! Is it me or is it getting hot in here?");
-                        a = 1;
-                        break;
+                        goto end;
                     case "l":
                         strength = 2;
                         constitution = 1;
                         charisma = -1;
                         playerRace = CharacterRace.LIZARDFOLK;
                         WriteLine("You are now a lizardfolk. Hisssssssss...");
-                        a = 1;
-                        break;
+                        goto end;
                     default:
                         WriteLine("Ye dun goofed! That is not a valid choice!");
                         break;
                 }
             }
+        end: return;
         }
         public void DetermineClass()
         {
-            int a = 0;
-            while (a == 0) // no need for gotos!
+            while (true)
             {
                 string adventuringClass = ReadLine().ToLower().Trim();
                 switch (adventuringClass)
@@ -329,8 +315,7 @@ namespace TheGrandAdventure
                         dmgMod = strength + lvl;
                         maxHp = lvl * constitution;
                         hp = maxHealth;
-                        a = 1;
-                        break;
+                        goto end;
                     case "r":
                         wisdom = 2;
                         dexterity = 1;
@@ -341,8 +326,7 @@ namespace TheGrandAdventure
                         dmgMod = dexterity + lvl;
                         maxHp = lvl * constitution;
                         hp = maxHealth;
-                        a = 1;
-                        break;
+                        goto end;
                     case "m":
                         intelligence = 2;
                         wisdom = 1;
@@ -353,8 +337,7 @@ namespace TheGrandAdventure
                         dmgMod = intelligence + lvl;
                         maxHp = lvl * constitution;
                         hp = maxHealth;
-                        a = 1;
-                        break;
+                        goto end;
                     case "t":
                         dexterity = 2;
                         charisma = 1;
@@ -365,8 +348,7 @@ namespace TheGrandAdventure
                         dmgMod = strength + lvl;
                         maxHp = lvl * constitution;
                         hp = maxHealth;
-                        a = 1;
-                        break;
+                        goto end;
                     case "c":
                         charisma = 2;
                         intelligence = 1;
@@ -377,8 +359,7 @@ namespace TheGrandAdventure
                         dmgMod = charisma + lvl;
                         maxHp = lvl * constitution;
                         hp = maxHealth;
-                        a = 1;
-                        break;
+                        goto end;
                     case "b":
                         strength = 2;
                         constitution = 1;
@@ -389,13 +370,13 @@ namespace TheGrandAdventure
                         dmgMod = strength + lvl;
                         maxHp = lvl * constitution;
                         hp = maxHealth;
-                        a = 1;
-                        break;
+                        goto end;
                     default:
                         WriteLine("Ye dun goofed! That is not a valid choice!");
                         break;
                 }
             }
+        end: return;
         }
     }
 }
