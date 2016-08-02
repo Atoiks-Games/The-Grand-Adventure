@@ -11,20 +11,33 @@ namespace TheGrandAdventure
     {
         static void Main(string[] args)
         {
+            int count = 0;
+            int playerNumber = 0;
+
             Party party = new TheGrandAdventure.Party();
+
             bool c = false;
+
             WriteLine("Welcome To:\n\n _The Grand Adventure_ \n\n Let's begin by assembling your party. How many adventurers do you want in your party?");
+
             bool failure = true;
             while (failure == true)
             {
                 try
                 {
-                    party.playerNumber = Convert.ToInt32(ReadLine());
-                    failure = false;
+                    playerNumber = Convert.ToByte(ReadLine());
+                    if (playerNumber == 0)
+                    {
+                        WriteLine("You either didn't enter a number, or it was invalid...");
+                    }
+                    else
+                    {
+                        failure = false;
+                    }
                 }
                 catch
                 {
-                    WriteLine("Please enter a number...");
+                    WriteLine("You either didn't enter a number, or it was invalid...");
                 }
             }
             WriteLine("Great! Let's create the members of your party!");
@@ -32,7 +45,7 @@ namespace TheGrandAdventure
 
 
 
-            while (party.count <= (party.playerNumber - 1))
+            while (count <= (playerNumber - 1))
             {
                 Player player = new TheGrandAdventure.Player();
                 while (c == true)
@@ -111,11 +124,11 @@ namespace TheGrandAdventure
 
                 party.AddPlayer(player);
 
-                if (party.count != (party.playerNumber - 1))
+                if (count != (playerNumber - 1))
                 {
                     WriteLine("Let's move onto the next member of your party!");
                 }
-                party.count++;
+                count++;
             }
 
             WriteLine("You are now ready to begin your adventure!");
@@ -124,7 +137,9 @@ namespace TheGrandAdventure
             ReadKey();
 
             Chapter1 Playthrough = new TheGrandAdventure.Chapter1();
-            Playthrough.Play();
+            Playthrough.Part1();
+            party.DisplayNames();
+
 
             WriteLine("The End");
             Read();

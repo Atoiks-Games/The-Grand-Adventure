@@ -9,9 +9,6 @@ namespace TheGrandAdventure
 {
     class Party
     {
-        public int count = 0;
-        public int playerNumber = 0;
-
         private List<Player> players = new List<Player>();
 
         public Party()
