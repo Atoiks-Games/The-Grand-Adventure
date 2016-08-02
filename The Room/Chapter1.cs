@@ -15,18 +15,18 @@ namespace TheGrandAdventure
         }
         public void Play()
         {
-            WriteLine("You wake up. It's morning. You can hear the birds chirping and the nearby river flowing. You get out of bed and look around the tiny cabin you live in.");
-            WriteLine("As you begin to get dressed you remeber that your adventuring contractor said he would be sending you a new task today. It would be in a parcel at the end of the long and twisted road to your house.");
+            WriteLine("Your party wakes up in their rooms of the inn. It's morning. They can hear the birds chirping and the nearby river flowing. They get out of bed and look around the tiny room they slept in.");
+            WriteLine("As they begin to get dressed they remeber that their adventuring contractor said he would be sending them a new task today. It would be in a parcel at the end of the long and twisted road to the dropzone.");
             string choice1 = "Sup...";
-            while (choice1 != "h")          // a != b is shorthand of !(a == b)
+            while (!(choice1 == "m"))
             {
-                WriteLine("You decide to:\nInspect Your House(i)\nHead Outside(h)");
+                WriteLine("What should your party do?:\nInspect Their Rooms(i)\nMeet up in The Tavern Below Their Rooms(m)");
                 choice1 = ReadLine().ToLower();
-                if (choice1 == "i")
+                if (choice1.Equals("i"))
                 {
-                    WriteLine("Your house is a small cabin in the woods. You live alone and gather food from the forest everyday. The house is well built and you are glad to call it home.");
+                    WriteLine("Their rooms are small and dusty. Each character's adventuring pack lays on the small bed. The window is opaque with dust and grime. It isn't pretty, but it's cheap.");
                 }
-                else if (choice1 != "h")
+                else if (!(choice1 == "m"))
                 {
                     WriteLine("INVALID ACTION");
                 }

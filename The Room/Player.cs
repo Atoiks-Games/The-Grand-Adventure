@@ -9,374 +9,252 @@ namespace TheGrandAdventure
 {
     class Player
     {
-        private int STR = 0;
-        public int strength
-        {
-            get
-            {
-                return STR;
-            }
-            set
-            {
-                STR = STR + value;
-            }
-        }
-        private int DEX = 0;
-        public int dexterity
-        {
-            get
-            {
-                return DEX;
-            }
-            set
-            {
-                DEX = DEX + value;
-            }
-        }
-        private int CON = 0;
-        public int constitution
-        {
-            get
-            {
-                return CON;
-            }
-            set
-            {
-                CON = CON + value;
-            }
-        }
-        private int INT = 0;
-        public int intelligence
-        {
-            get
-            {
-                return INT;
-            }
-            set
-            {
-                INT = INT + value;
-            }
-        }
-        private int WIS = 0;
-        public int wisdom
-        {
-            get
-            {
-                return WIS;
-            }
-            set
-            {
-                WIS = WIS + value;
-            }
-        }
-        private int CHA = 0;
-        public int charisma
-        {
-            get
-            {
-                return CHA;
-            }
-            set
-            {
-                CHA = CHA + value;
-            }
-        }
 
-        private string firstName = "";
-        public string fName
-        {
-            get
-            {
-                return firstName;
-            }
-            set
-            {
-                firstName = value;
-            }
-        }
+        public bool male = true;
+        public string his = "his";
+        public string His = "His";
+        public string he = "he";
+        public string He = "He";
 
-        private string lastName = "";
-        public string lName
-        {
-            get
-            {
-                return lastName;
-            }
-            set
-            {
-                lastName = value;
-            }
-        }
+
+
+        public int STR = 0;
+        public int DEX = 0;
+        public int CON = 0;
+        public int INT = 0;
+        public int WIS = 0;
+        public int CHA = 0;
+
+        public string firstName = "k";
+        public string lastName = "k";
 
         public enum CharacterRace
         {
-            DWARF = 0, HUMAN, ELF, GNOME, INFERNAL, LIZARDFOLK
+            DWARF, HUMAN, ELF, GNOME, INFERNAL, LIZARDFOLK
         }
         public enum CharacterClass
         {
-            KNIGHT = 0, RANGER, MAGE, THIEF, CLERIC, BARBARIAN
+            KNIGHT, RANGER, MAGE, THIEF, CLERIC, BARBARIAN
         }
-        public enum CharacterWeapon // TODO: Added weapons, will affect attack damage later on in game...
+        public enum CharacterWeapon
         {
-            SWORD = 0, LONGSWORD, GREATSWORD, BOW, LONGBOW, CROSSBOW, STAFF, LONGSTAFF, BOSTAFF, DAGGER, THROWINGKNIFE, KUNAI, CROSS, IDOL, TOME, AXE, BATTLEAXE, WARHAMMER
+            SWORD, LONGSWORD, GREATSWORD, BOW, LONGBOW, CROSSBOW, STAFF, LONGSTAFF, BOSTAFF, DAGGER, THROWINGKNIFE, KUNAI, CROSS, IDOL, TOME, AXE, BATTLEAXE, WARHAMMER
         }
-        private CharacterClass playerClass; // Using private modifier here
-        public CharacterClass playClass
+        public CharacterRace playRace;
+        public CharacterClass playClass;
+        public CharacterWeapon playWeapon;
+        public string characterRace = "";
+        public string characterClass = "";
+        public string characterWeapon = "";
+
+        public int resistance = 0;
+
+        public int level = 1;
+
+        public int health = 0;
+        public int maxHealth = 0;
+        public int damageModifier = 0;
+
+        public Player()
         {
-            get
-            {
-                return playerClass;
-            }
-            set
-            {
-                playerClass = value;
-            }
+
         }
-        private CharacterRace playerRace;
-        public CharacterRace playRace
+        public void Pronouns()
         {
-            get
+            if (male == false)
             {
-                return playerRace;
-            }
-            set
-            {
-                playerRace = value;
-            }
-        }
-        private CharacterWeapon playerWeapon;
-        public CharacterWeapon playWeapon
-        {
-            get
-            {
-                return playerWeapon;
-            }
-            set
-            {
-                playerWeapon = value;
+                his = "her";
+                His = "Her";
+                he = "she";
+                He = "She";
             }
         }
 
-        private int resistance = 0;
-        public int ac
-        {
-            get
-            {
-                return resistance;
-            }
-            set
-            {
-                resistance = resistance + value;
-            }
-        }
-        private int level = 1;
-        public int lvl
-        {
-            get
-            {
-                return level;
-            }
-            set
-            {
-                level = level + value;
-            }
-        }
-        private int health = 0;
-        public int hp
-        {
-            get
-            {
-                return health;
-            }
-            set
-            {
-                health = Math.Min(health + value, maxHealth); // ensures player doesn't go over max health
-            }
-        }
-        private int maxHealth = 0;
-        public int maxHp
-        {
-            get
-            {
-                return maxHealth;
-            }
-            set
-            {
-                maxHealth = value;          // Consider taking account of when the new maxHp is smaller than
-            }                               // the player's current hp.
-        }
-        private int damageModifier = 0;
-        public int dmgMod
-        {
-            get
-            {
-                return damageModifier;
-            }
-            set
-            {
-                damageModifier = value + level;
-            }
-        }
-
-        public Player(int playerNumber)
-        {
-            WriteLine("Welcome player {0}!", playerNumber);
-        }
         public void GenerateScores(int fudgeFactor)
         {
             Random rnd = new Random();
-            strength = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
-            dexterity = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
-            constitution = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
-            intelligence = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
-            wisdom = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
-            charisma = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
+            STR = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
+            DEX = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
+            CON = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
+            INT = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
+            WIS = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
+            CHA = rnd.Next(1, 6) + rnd.Next(1, 6) + rnd.Next(1, 6) + fudgeFactor;
             DisplayScores();
         }
         public void DisplayScores()
         {
-            WriteLine("Your strength is: " + strength);
-            WriteLine("Your dexterity is: " + dexterity);
-            WriteLine("Your constitution is: " + constitution);
-            WriteLine("Your intelligence is: " + intelligence);
-            WriteLine("Your wisdom is: " + wisdom);
-            WriteLine("Your charisma is: " + charisma);
+            WriteLine(firstName + " " + lastName + "'s strength is: " + STR);
+            WriteLine(firstName + " " + lastName + "'s dexterity is: " + DEX);
+            WriteLine(firstName + " " + lastName + "'s constitution is: " + CON);
+            WriteLine(firstName + " " + lastName + "'s intelligence is: " + INT);
+            WriteLine(firstName + " " + lastName + "'s wisdom is: " + WIS);
+            WriteLine(firstName + " " + lastName + "'s charisma is: " + CHA);
         }
         public void DetermineRace()
         {
-            while (true)
+            bool a = true;
+            while (a == true)
             {
                 string race = ReadLine().ToLower().Trim();
                 switch (race)
                 {
                     case "d":
-                        constitution = 2;
-                        strength = 1;
-                        dexterity = -1;
-                        playerRace = CharacterRace.DWARF;
+                        CON = CON + 2;
+                        STR = STR + 1;
+                        DEX = DEX - 1;
+                        playRace = CharacterRace.DWARF;
+                        characterRace = Convert.ToString(playRace);
                         WriteLine("You are now a dwarf! Diggy Diggy Hole!");
-                        goto end;       // I am afraid the gotos are back
+                        a = false;
+                        break;
                     case "h":
-                        charisma = 2;
-                        strength = 1;
-                        wisdom = -1;
-                        playerRace = CharacterRace.HUMAN;
+                        CHA = CHA + 2;
+                        STR = STR + 1;
+                        WIS = WIS - 1;
+                        playRace = CharacterRace.HUMAN;
+                        characterRace = Convert.ToString(playRace);
                         WriteLine("You are now a human! Yay!");
-                        goto end;
+                        a = false;
+                        break;
                     case "e":
-                        intelligence = 2;
-                        dexterity = 1;
-                        constitution = -1;
-                        playerRace = CharacterRace.ELF;
+                        INT = INT + 2;
+                        DEX = DEX + 1;
+                        CON = CON - 1;
+                        playRace = CharacterRace.ELF;
+                        characterRace = Convert.ToString(playRace);
                         WriteLine("You are now an elf! A very popular choice...");
-                        goto end;
+                        a = false;
+                        break;
                     case "g":
-                        dexterity = 2;
-                        charisma = 1;
-                        strength = -1;
-                        playerRace = CharacterRace.GNOME;
+                        DEX = DEX + 2;
+                        CHA = CHA + 1;
+                        STR = STR - 1;
+                        playRace = CharacterRace.GNOME;
+                        characterRace = Convert.ToString(playRace);
                         WriteLine("You are now a gnome! How cute!");
-                        goto end;
+                        a = false;
+                        break;
                     case "i":
-                        wisdom = 2;
-                        intelligence = 1;
-                        charisma = -1;
-                        playerRace = CharacterRace.INFERNAL;
+                        WIS = WIS + 2;
+                        INT = INT + 1;
+                        CHA = CHA - 1;
+                        playRace = CharacterRace.INFERNAL;
+                        characterRace = Convert.ToString(playRace);
                         WriteLine("You are now an infernal! Is it me or is it getting hot in here?");
-                        goto end;
+                        a = false;
+                        break;
                     case "l":
-                        strength = 2;
-                        constitution = 1;
-                        charisma = -1;
-                        playerRace = CharacterRace.LIZARDFOLK;
+                        STR = STR + 2;
+                        CON = CON + 1;
+                        CHA = CHA - 1;
+                        playRace = CharacterRace.LIZARDFOLK;
+                        characterRace = Convert.ToString(playRace);
                         WriteLine("You are now a lizardfolk. Hisssssssss...");
-                        goto end;
+                        a = false;
+                        break;
                     default:
                         WriteLine("Ye dun goofed! That is not a valid choice!");
                         break;
                 }
             }
-        end: return;
         }
         public void DetermineClass()
         {
-            while (true)
+            bool a = true;
+            while (a == true)
             {
                 string adventuringClass = ReadLine().ToLower().Trim();
                 switch (adventuringClass)
                 {
                     case "k":
-                        constitution = 2;
-                        strength = 1;
-                        playerClass = CharacterClass.KNIGHT;
-                        playerWeapon = CharacterWeapon.SWORD;
+                        CON = CON + 2;
+                        STR = STR + 1;
+                        playClass = CharacterClass.KNIGHT;
+                        characterClass = Convert.ToString(playClass);
+                        playWeapon = CharacterWeapon.SWORD;
+                        characterWeapon = Convert.ToString(playWeapon);
                         WriteLine("You are now a knight! Huzzah!");
-                        ac = 15;
-                        dmgMod = strength + lvl;
-                        maxHp = lvl * constitution;
-                        hp = maxHealth;
-                        goto end;
+                        resistance = 15;
+                        damageModifier = STR + level;
+                        maxHealth = level * CON;
+                        health = maxHealth;
+                        a = false;
+                        break;
                     case "r":
-                        wisdom = 2;
-                        dexterity = 1;
-                        playerClass = CharacterClass.RANGER;
-                        playerWeapon = CharacterWeapon.BOW;
+                        WIS = WIS + 2;
+                        DEX = DEX + 1;
+                        playClass = CharacterClass.RANGER;
+                        characterClass = Convert.ToString(playClass);
+                        playWeapon = CharacterWeapon.BOW;
+                        characterWeapon = Convert.ToString(playWeapon);
                         WriteLine("You are now a ranger! One shot. One kill.");
-                        ac = 10 + (dexterity - 10);
-                        dmgMod = dexterity + lvl;
-                        maxHp = lvl * constitution;
-                        hp = maxHealth;
-                        goto end;
+                        resistance = 10 + (DEX - 10);
+                        damageModifier = DEX + level;
+                        maxHealth = level * CON;
+                        health = maxHealth;
+                        a = false;
+                        break;
                     case "m":
-                        intelligence = 2;
-                        wisdom = 1;
-                        playerClass = CharacterClass.MAGE;
-                        playerWeapon = CharacterWeapon.STAFF;
+                        INT = INT + 2;
+                        WIS = WIS + 1;
+                        playClass = CharacterClass.MAGE;
+                        characterClass = Convert.ToString(playClass);
+                        playWeapon = CharacterWeapon.STAFF;
+                        characterWeapon = Convert.ToString(playWeapon);
                         WriteLine("You are now a mage! Fireball!");
-                        ac = 10 + (dexterity - 10);
-                        dmgMod = intelligence + lvl;
-                        maxHp = lvl * constitution;
-                        hp = maxHealth;
-                        goto end;
+                        resistance = 10 + (DEX - 10);
+                        damageModifier = INT + level;
+                        maxHealth = level * CON;
+                        health = maxHealth;
+                        a = false;
+                        break;
                     case "t":
-                        dexterity = 2;
-                        charisma = 1;
-                        playerClass = CharacterClass.THIEF;
-                        playerWeapon = CharacterWeapon.DAGGER;
+                        DEX = DEX + 2;
+                        CHA = CHA + 1;
+                        playClass = CharacterClass.THIEF;
+                        characterClass = Convert.ToString(playClass);
+                        playWeapon = CharacterWeapon.DAGGER;
+                        characterWeapon = Convert.ToString(playWeapon);
                         WriteLine("You are now a thief! Time to loot the bodies!");
-                        ac = 10 + (dexterity - 10) + lvl;
-                        dmgMod = strength + lvl;
-                        maxHp = lvl * constitution;
-                        hp = maxHealth;
-                        goto end;
+                        resistance = 10 + (DEX - 10) + level;
+                        damageModifier = STR + level;
+                        maxHealth = level * CON;
+                        health = maxHealth;
+                        a = false;
+                        break;
                     case "c":
-                        charisma = 2;
-                        intelligence = 1;
-                        playerClass = CharacterClass.CLERIC;
-                        playerWeapon = CharacterWeapon.CROSS;
+                        CHA = CHA + 2;
+                        INT = INT + 1;
+                        playClass = CharacterClass.CLERIC;
+                        characterClass = Convert.ToString(playClass);
+                        playWeapon = CharacterWeapon.CROSS;
+                        characterWeapon = Convert.ToString(playWeapon);
                         WriteLine("You are now a cleric! Channel the gods' wrath!");
-                        ac = 12 + lvl;
-                        dmgMod = charisma + lvl;
-                        maxHp = lvl * constitution;
-                        hp = maxHealth;
-                        goto end;
+                        resistance = 10 + level;
+                        damageModifier = CHA + level;
+                        maxHealth = level * CON;
+                        health = maxHealth;
+                        a = false;
+                        break;
                     case "b":
-                        strength = 2;
-                        constitution = 1;
-                        playerClass = CharacterClass.BARBARIAN;
-                        playerWeapon = CharacterWeapon.AXE;
-                        WriteLine("You are now a barbarian! ROOOAAR!!!");
-                        ac = 10 + (dexterity - 10) + lvl;
-                        dmgMod = strength + lvl;
-                        maxHp = lvl * constitution;
-                        hp = maxHealth;
-                        goto end;
+                        STR = STR + 2;
+                        CON = CON + 1;
+                        playClass = CharacterClass.BARBARIAN;
+                        characterClass = Convert.ToString(playClass);
+                        playWeapon = CharacterWeapon.AXE;
+                        characterWeapon = Convert.ToString(playWeapon);
+                        WriteLine("You are now a barbarian! ROOOFAAR!!!");
+                        resistance = 10 + (DEX - 10) + level;
+                        damageModifier = STR + level;
+                        maxHealth = level * CON;
+                        health = maxHealth;
+                        a = false;
+                        break;
                     default:
                         WriteLine("Ye dun goofed! That is not a valid choice!");
                         break;
                 }
             }
-        end: return;
         }
     }
 }
